@@ -37,7 +37,7 @@ export const useAuthStore = defineStore('auth', {
                         Authorization: `Bearer ${this.token}`,
                     }
                 });
-                this.user = response.data;
+                this.user = response.data.data;
             } catch (error) {
                 console.error('Erro ao obter os dados do usuário: ', error);
                 this.clearToken();

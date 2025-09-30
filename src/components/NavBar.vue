@@ -1,16 +1,50 @@
 <script>
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRoute, useRouter } from 'vue-router';
+import { computed, defineComponent } from 'vue';
+import { useAuthStore } from '@/stores/Auth';
+
+export default defineComponent({
+
+    name: 'Navbar',
+
+    setup() {
+
+        const route = useRoute();
+        const router = useRouter();
+        const authStore = useAuthStore();
+
+        const currentUser = computed(() => authStore.getUser);
+        const isSuperadmin = computed(() => authStore.isSuperadmin);
+
+        const showNavbar = computed(() => {
+            return !['/login', '/register'].includes(route.path);
+        });
+
+        const logout = () => {
+            authStore.logout();
+            router.replace('/login');
+        };
+
+        return {
+            logout,
+            showNavbar,
+            currentUser,
+            isSuperadmin,
+        };
+
+    }
+});
 
 </script>
 
 <template>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav v-if="showNavbar" class="navbar navbar-expand-lg bg-body-tertiary">
 
         <div class="container-fluid">
 
-            <router-link class="navbar-brand" to="/">
+            <RouterLink class="navbar-brand" to="/">
                 Gestão Membros
-            </router-link>
+            </RouterLink>
 
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -21,21 +55,21 @@ import { RouterLink } from 'vue-router';
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <router-link class="nav-link active" aria-current="page" to="/">
+                        <RouterLink class="nav-link active" aria-current="page" to="/">
                             Home
-                        </router-link>
+                        </RouterLink>
                     </li>
 
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/churches">
+                        <RouterLink class="nav-link" to="/churches">
                             Igrejas
-                        </router-link>
+                        </RouterLink>
                     </li>
 
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/members">
+                        <RouterLink class="nav-link" to="/members">
                             Membros
-                        </router-link>
+                        </RouterLink>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -56,10 +90,15 @@ import { RouterLink } from 'vue-router';
                     </li>
 
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                <div class="d-flex">
+                    <span v-if="currentUser" class="navbar-text p-0 pt-1 me-4">
+                        <span class="badge bg-dark">
+                            {{ currentUser.username }} - {{ currentUser.roles.join(', ') }}
+                        </span>
+                    </span>
+
+                    <button class="btn btn-outline-danger" @click="logout">Sair</button>
+                </div>
             </div>
         </div>
     </nav>

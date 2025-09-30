@@ -11,6 +11,9 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
+      meta: {
+        requireAuth: true,
+      }
     },
 
     ...churchesRoutes,
