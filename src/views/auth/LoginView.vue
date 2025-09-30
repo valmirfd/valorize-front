@@ -5,7 +5,7 @@ import { toast } from 'vue3-toastify';
 import { defineComponent, ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import ValidationErrors from '@/components/ValidationErrors.vue';
-// import { useAuthStore } from '@/stores/Auth';
+import { useAuthStore } from '@/stores/Auth';
 
 
 export default defineComponent({
@@ -28,7 +28,7 @@ export default defineComponent({
 
         const validationErrors = ref([]);
 
-       // const authStore = useAuthStore();
+        const authStore = useAuthStore();
 
         const createLogin = async () => {
 
