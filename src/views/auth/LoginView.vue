@@ -40,7 +40,7 @@ export default defineComponent({
 
                 const data = await api.create(credentials.value);
 
-                authStore.setToken(data.access_token);
+                authStore.setToken(data.token);
 
                 toast.success(`Sucesso`, {
                     'theme': 'colored',

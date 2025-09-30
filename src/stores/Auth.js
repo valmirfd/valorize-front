@@ -32,7 +32,7 @@ export const useAuthStore = defineStore('auth', {
             this.loadingUser = true;
 
             try {
-                const response = await axios.get(`${BASE_URL}/user`, {
+                const response = await axios.get(`${BASE_URL}/users/user`, {
                     headers: {
                         Authorization: `Bearer ${this.token}`,
                     }
