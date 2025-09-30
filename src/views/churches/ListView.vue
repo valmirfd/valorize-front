@@ -1,5 +1,41 @@
 <script>
 import { RouterLink } from 'vue-router';
+import ChurchesApi from '@/services/api/ChurchesApi';
+import { toast } from 'vue3-toastify';
+import { defineComponent, ref, onMounted } from 'vue';
+
+export default defineComponent({
+    name: 'ChurchesView',
+
+    setup() {
+        const churches = ref([]);
+
+        const fetchChurches = async () => {
+            try {
+                const api = new ChurchesApi();
+                const data = await api.list();
+                churches.value = data;
+
+                console.log(churches);
+
+            } catch (error) {
+                if (error.response && error.response.status !== 401) {
+                    toast.error(`Erro ao recuperar os dados: ${error}`, {
+                        'theme': 'colored',
+                        hideProgressBar: true,
+                    });
+                }
+                console.log(`Erro ao recuperar os dados: ${error}`);
+            }
+        }
+
+        onMounted(fetchChurches);
+
+        return { churches };
+
+    }
+
+});
 
 </script>
 
