@@ -16,7 +16,7 @@ class ChurchesApi extends BaseApi {
     }
 
     destroy(id) {
-        return this.delete(`/churches/update/${id}`);
+        return this.delete(`/churches/destroy/${id}`);
     }
 }
 

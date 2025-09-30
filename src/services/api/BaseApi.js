@@ -15,22 +15,22 @@ class BaseApi {
 
     async get(url) {
         const response = await this.axiosInstance.get(url);
-        return response.data;
+        return response.data.data;
     }
 
     async post(url, data) {
         const response = await this.axiosInstance.post(url, data);
-        return response.data;
+        return response.data.data;
     }
 
     async put(url, data) {
         const response = await this.axiosInstance.put(url, data);
-        return response.data;
+        return response.data.data;
     }
 
     async delete(url) {
         const response = await this.axiosInstance.delete(url);
-        return response.data;
+        return response.data.data;
     }
 }
 
