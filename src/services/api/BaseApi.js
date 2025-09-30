@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "@/services/api/config";
-import { useRoute } from "vue-router";
+import { setupInterceptors } from "@/services/api/interceptors";
 
 class BaseApi {
     constructor() {
@@ -11,6 +11,8 @@ class BaseApi {
                 'Accept': 'application/json'
             }
         });
+
+        setupInterceptors(this.axiosInstance);
     }
 
     async get(url) {
