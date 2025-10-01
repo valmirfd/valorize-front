@@ -1,92 +1,87 @@
 <script>
-import { RouterLink } from 'vue-router';
-import ChurchesApi from '@/services/api/ChurchesApi';
-import { toast } from 'vue3-toastify';
-import { defineComponent, ref, onMounted } from 'vue';
+import { RouterLink } from "vue-router";
+import ChurchesApi from "@/services/api/ChurchesApi";
+import { toast } from "vue3-toastify";
+import { defineComponent, ref, onMounted } from "vue";
+import LoadingSpinner from "@/components/LoadingSpinner.vue";
 
 export default defineComponent({
-    name: 'ChurchesView',
+  name: "ChurchesView",
+  components: {
+    LoadingSpinner,
+  },
 
-    setup() {
-        const churches = ref([]);
+  setup() {
+    const churches = ref([]);
+    const isLoading = ref(true);
 
-        const fetchChurches = async () => {
-            try {
-                const api = new ChurchesApi();
-                const data = await api.list();
-                churches.value = data;
-
-                console.log(churches);
-
-            } catch (error) {
-                if (error.response && error.response.status !== 401) {
-                    toast.error(`Erro ao recuperar os dados: ${error}`, {
-                        'theme': 'colored',
-                        hideProgressBar: true,
-                    });
-                }
-                console.log(`Erro ao recuperar os dados: ${error}`);
-            }
+    const fetchChurches = async () => {
+      try {
+        const api = new ChurchesApi();
+        const data = await api.list();
+        churches.value = data;
+        isLoading.value = false;
+      } catch (error) {
+        if (error.response && error.response.status !== 401) {
+          toast.error(`Erro ao recuperar os dados: ${error}`, {
+            theme: "colored",
+            hideProgressBar: true,
+          });
         }
+        console.log(`Erro ao recuperar os dados: ${error}`);
+      }
+    };
 
-        onMounted(fetchChurches);
+    onMounted(fetchChurches);
 
-        return { churches };
-
-    }
-
+    return { churches, isLoading };
+  },
 });
-
 </script>
 
 <template>
-    <div class="container-fluid mt-4 mb-4">
-        <div class="card shadow-lg">
-            <div class="card-header d-inline-flex justify-content-between">
-                <h5 class="text-muted">Igrejas da Região</h5>
-                <RouterLink class="btn btn-sm btn-success" to="/churches/new"><i
-                        class="bi bi-plus-circle me-2"></i>Cadastrar Igreja</RouterLink>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>@social</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-            <div class="card-footer">
-                footer
-            </div>
+  <div class="container-fluid mt-4 mb-4">
+    <div class="card shadow-lg">
+      <div class="card-header d-inline-flex justify-content-between">
+        <h5 class="text-muted">Igrejas da Região</h5>
+        <RouterLink class="btn btn-sm btn-success" to="/churches/new"
+          ><i class="bi bi-plus-circle me-2"></i>Cadastrar Igreja</RouterLink
+        >
+      </div>
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-center">
+          <LoadingSpinner :isloading="isloading" />
         </div>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Criada</th>
+                <th scope="col">Atualizada</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-if="churches.length === 0">
+                <td class="text-center" colspan="4">Não há dados para exibir</td>
+              </tr>
+
+              <tr v-else v-for="church in churches" :key="church.id">
+                <td>{{ church.nome }}</td>
+                <td>{{ church.created_at.date }}</td>
+                <td>{{ church.updated_at.date }}</td>
+                <td>Detalhes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer">
+        Sistema de Gestão de Membros - {{ new Date().getFullYear() }}
+      </div>
     </div>
+  </div>
 </template>
 
 <style scoped></style>
