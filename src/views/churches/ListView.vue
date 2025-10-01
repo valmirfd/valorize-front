@@ -44,13 +44,13 @@ export default defineComponent({
     <div class="card shadow-lg">
       <div class="card-header d-inline-flex justify-content-between">
         <h5 class="text-muted">Igrejas da Região</h5>
-        <RouterLink class="btn btn-sm btn-success" to="/churches/new"
+        <RouterLink class="btn btn-sm btn-outline-success" to="/churches/new"
           ><i class="bi bi-plus-circle me-2"></i>Cadastrar Igreja</RouterLink
         >
       </div>
       <div class="card-body">
         <div class="d-flex align-items-center justify-content-center">
-          <LoadingSpinner :isloading="isloading" />
+          <LoadingSpinner :isloading="isLoading" />
         </div>
         <div class="table-responsive">
           <table class="table table-bordered table-striped table-hover">
@@ -71,7 +71,13 @@ export default defineComponent({
                 <td>{{ church.nome }}</td>
                 <td>{{ church.created_at.date }}</td>
                 <td>{{ church.updated_at.date }}</td>
-                <td>Detalhes</td>
+                <td class="text-center">
+                  <RouterLink
+                    class="btn btn-sm btn-primary"
+                    :to="{ name: 'ShowChurchView', params: { id: church.id } }"
+                    ><i class="bi bi-eye-fill me-2"></i>Detalhes</RouterLink
+                  >
+                </td>
               </tr>
             </tbody>
           </table>

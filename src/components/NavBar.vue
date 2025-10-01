@@ -52,17 +52,13 @@ export default defineComponent({
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <RouterLink class="nav-link active" aria-current="page" to="/">
+            <router-link class="nav-link active" aria-current="page" to="/">
               Home
-            </RouterLink>
+            </router-link>
           </li>
 
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/churches"> Igrejas </RouterLink>
-          </li>
-
-          <li class="nav-item">
-            <RouterLink class="nav-link" to="/members"> Membros </RouterLink>
+            <router-link class="nav-link" to="/churches"> Igrejas </router-link>
           </li>
 
           <li class="nav-item dropdown">
@@ -84,7 +80,9 @@ export default defineComponent({
               <li>
                 <hr class="dropdown-divider" />
               </li>
-              <li><router-link class="dropdown-item" to="#">Sair</router-link></li>
+              <li>
+                <router-link class="dropdown-item" to="">Sair</router-link>
+              </li>
             </ul>
           </li>
         </ul>
@@ -95,7 +93,7 @@ export default defineComponent({
             </span>
           </span>
 
-          <button class="btn btn-outline-danger" @click="logout">Sair</button>
+          <button class="btn btn-sm btn-outline-danger" @click="logout">Sair</button>
         </div>
       </div>
     </div>

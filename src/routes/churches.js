@@ -8,4 +8,14 @@ export const churchesRoutes = [
             isSuperAdmin: true,
         }
     },
+
+    {
+        path: '/churches/:id',
+        name: 'ShowChurchView',
+        component: () => import('@/views/churches/ShowView.vue'),
+        meta: {
+            requireAuth: true,
+            isSuperAdmin: true,
+        }
+    },
 ];
