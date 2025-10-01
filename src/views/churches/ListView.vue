@@ -70,8 +70,8 @@ export default defineComponent({
 
               <tr v-else v-for="church in churches" :key="church.id">
                 <td>{{ church.nome }}</td>
-                <td>{{ church.created_at.date }}</td>
-                <td>{{ church.updated_at.date }}</td>
+                <td>{{ church.created_at }}</td>
+                <td>{{ church.updated_at }}</td>
                 <td class="text-center">
                   <RouterLink
                     class="btn btn-sm btn-primary"
