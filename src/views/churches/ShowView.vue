@@ -33,11 +33,10 @@ export default defineComponent({
       address: ref({}),
     });
 
-    const fetchChurches = async () => {
+    const fetchChurch = async () => {
       try {
         const api = new ChurchesApi();
         const data = await api.get(`/churches/show/${route.params.id}`);
-
         church.value = data;
         isLoading.value = false;
       } catch (error) {
@@ -52,7 +51,7 @@ export default defineComponent({
       }
     };
 
-    onMounted(fetchChurches);
+    onMounted(fetchChurch);
 
     return {
       church,
