@@ -1,14 +1,25 @@
 <script>
 import { RouterLink } from "vue-router";
 import ChurchesApi from "@/services/api/ChurchesApi";
-import { defineComponent, ref, onMounted, reactive } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 import LoadingSpinner from "@/components/LoadingSpinner.vue";
+import { useRouter, useRoute } from "vue-router";
 
 export default defineComponent({
   name: "ShowView",
 
   components: {
     LoadingSpinner,
+  },
+
+  setup() {
+    const router = useRouter();
+    const route = useRoute();
+
+    const isLoading = ref(true);
+    const church = ref({
+      name: "",
+    });
   },
 });
 </script>
@@ -24,7 +35,7 @@ export default defineComponent({
       </div>
       <div class="card-body">
         <div class="d-flex align-items-center justify-content-center">
-          <LoadingSpinner :isloading="isloading" />
+          <LoadingSpinner :isLoading="isLoading" />
         </div>
       </div>
     </div>

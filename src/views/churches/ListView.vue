@@ -50,7 +50,7 @@ export default defineComponent({
       </div>
       <div class="card-body">
         <div class="d-flex align-items-center justify-content-center">
-          <LoadingSpinner :isloading="isLoading" />
+          <LoadingSpinner :isLoading="isLoading" />
         </div>
         <div class="table-responsive">
           <table class="table table-bordered table-striped table-hover">

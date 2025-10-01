@@ -4,7 +4,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "LoadingSpinner",
   props: {
-    isloading: {
+    isLoading: {
       type: Boolean,
       required: true,
     },
@@ -13,7 +13,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div v-if="isloading" class="spinner-border mb-3" role="status">
+  <div v-if="isLoading" class="spinner-border mb-3" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
 </template>

@@ -81,7 +81,7 @@ export default defineComponent({
                 <hr class="dropdown-divider" />
               </li>
               <li>
-                <router-link class="dropdown-item" to="">Sair</router-link>
+                <button class="dropdown-item d-inline-flex" @click="logout">Sair</button>
               </li>
             </ul>
           </li>
