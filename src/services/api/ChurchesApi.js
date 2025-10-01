@@ -7,6 +7,10 @@ class ChurchesApi extends BaseApi {
         return this.get('/churches/list');
     }
 
+     /*show(id) {
+        return this.get(`/churches/show/${id}`);
+    }*/
+
     create(church) {
         return this.post('/churches/create', church);
     }

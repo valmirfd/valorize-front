@@ -1,6 +1,7 @@
 <script>
 import { RouterLink } from "vue-router";
 import ChurchesApi from "@/services/api/ChurchesApi";
+import { toast } from "vue3-toastify";
 import { defineComponent, ref, onMounted } from "vue";
 import LoadingSpinner from "@/components/LoadingSpinner.vue";
 import { useRouter, useRoute } from "vue-router";
@@ -18,8 +19,46 @@ export default defineComponent({
 
     const isLoading = ref(true);
     const church = ref({
-      name: "",
+      nome: "",
+      telefone: "",
+      cnpj: "",
+      code: "",
+      situacao: "",
+      superintendete_id: "",
+      titular_id: "",
+      is_sede: "",
+      user_id: "",
+      address_id: "",
+      address: ref([]),
     });
+
+    const fetchChurches = async () => {
+      try {
+        const api = new ChurchesApi();
+        //const data = await api.show(`/churches/show/${route.params.id}`);
+        const data = await api.get(`/churches/show/${route.params.id}`);
+        church.value = data;
+        isLoading.value = false;
+
+        console.log(church);
+      } catch (error) {
+        if (error.response && error.response.status !== 401) {
+          toast.error(`Erro ao recuperar os dados: ${error}`, {
+            theme: "colored",
+            hideProgressBar: true,
+          });
+        }
+        isLoading.value = false;
+        console.log(`Erro ao recuperar os dados: ${error}`);
+      }
+    };
+
+    onMounted(fetchChurches);
+
+    return {
+      church,
+      isLoading,
+    };
   },
 });
 </script>
@@ -37,6 +76,10 @@ export default defineComponent({
         <div class="d-flex align-items-center justify-content-center">
           <LoadingSpinner :isLoading="isLoading" />
         </div>
+
+        <ul class="list-group mb-3">
+          <li class="list-group-item"><strong>Igreja : </strong>{{ church.nome }}</li>
+        </ul>
       </div>
     </div>
   </div>

@@ -28,6 +28,7 @@ export default defineComponent({
             hideProgressBar: true,
           });
         }
+        isLoading.value = false;
         console.log(`Erro ao recuperar os dados: ${error}`);
       }
     };
