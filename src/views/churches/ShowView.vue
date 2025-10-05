@@ -34,12 +34,16 @@ export default defineComponent({
     });
 
     const fetchChurch = async () => {
+
       try {
         const api = new ChurchesApi();
         const data = await api.get(`/churches/show/${route.params.id}`);
+
         church.value = data;
         isLoading.value = false;
-        
+
+         console.log(church);
+
       } catch (error) {
         if (error.response && error.response.status !== 401) {
           toast.error(`Erro ao recuperar os dados: ${error}`, {
@@ -50,6 +54,7 @@ export default defineComponent({
         isLoading.value = false;
         console.log(`Erro ao recuperar os dados: ${error}`);
       }
+
     };
 
     onMounted(fetchChurch);
@@ -69,9 +74,8 @@ export default defineComponent({
         <div class="card shadow-md">
           <div class="card-header d-inline-flex justify-content-between">
             <h5 class="text-muted">Detalhes da Igreja</h5>
-            <RouterLink class="btn btn-sm btn-outline-secondary" to="/churches"
-              ><i class="bi bi-arrow-left-short me-2"></i>Voltar</RouterLink
-            >
+            <RouterLink class="btn btn-sm btn-outline-secondary" to="/churches"><i
+                class="bi bi-arrow-left-short me-2"></i>Voltar</RouterLink>
           </div>
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-center">
@@ -79,7 +83,9 @@ export default defineComponent({
             </div>
 
             <ul class="list-group mb-3">
+
               <li class="list-group-item"><strong>Igreja : </strong>{{ church.nome }}</li>
+
               <li class="list-group-item">
                 <strong>Telefone : </strong>{{ church.telefone }}
               </li>
@@ -94,6 +100,7 @@ export default defineComponent({
               <li class="list-group-item">
                 <strong>SuperintendentenID : </strong>{{ church.superintendente_id }}
               </li>
+
             </ul>
           </div>
         </div>
