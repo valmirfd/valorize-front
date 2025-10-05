@@ -30,7 +30,7 @@ export default defineComponent({
       user_id: "",
       address_id: "",
       images: ref([]),
-      address: ref({}),
+      address: ref([]),
     });
 
     const fetchChurch = async () => {
@@ -39,6 +39,7 @@ export default defineComponent({
         const data = await api.get(`/churches/show/${route.params.id}`);
         church.value = data;
         isLoading.value = false;
+        
       } catch (error) {
         if (error.response && error.response.status !== 401) {
           toast.error(`Erro ao recuperar os dados: ${error}`, {
