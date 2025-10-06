@@ -78,45 +78,19 @@ export default defineComponent({
         <div class="row">
             <div class="col-md-6">
                 <div class="card shadow-lg">
-                    <div class="card-header d-inline-flex align-items-center">
-                        <h5 class="text-muted me-4">Detalhes da Igreja</h5>
-                        <div class="ms-4">
-                            <RouterLink class="btn btn-sm btn-outline-info me-2" to="/churches">
-                                <i class="bi bi-arrow-left-circle me-2"></i>Voltar
-                            </RouterLink>
-
-                            <RouterLink class="btn btn-sm btn-outline-primary me-2"
-                                :to="{ name: 'EditChurchView', params: { id: church.id } }">
-                                <i class="bi bi-pencil-fill me-2"></i>Editar
-                            </RouterLink>
-
-                            <RouterLink class="btn btn-sm btn-outline-danger me-2"
-                                :to="{ name: 'EditChurchView', params: { id: church.id } }">
-                                <i class="bi bi-trash3-fill me-2"></i>Excluir
-                            </RouterLink>
-                        </div>
-
+                    <div class="card-header d-inline-flex justify-content-between">
+                        <h5 class="text-muted">Editar Igreja</h5>
+                        <RouterLink class="btn btn-sm btn-outline-info"
+                            :to="{ name: 'ShowChurchView', params: { id: church.id } }">
+                            <i class="bi bi-arrow-left-circle me-2"></i>Voltar
+                        </RouterLink>
                     </div>
                     <div class="card-body">
                         <div class="d-flex align-items-center justify-content-center">
                             <LoadingSpinner :isLoading="isLoading" />
                         </div>
 
-                        <ul class="list-group mb-4">
-                            <li class="list-group-item"><strong>Igreja :</strong>&nbsp;{{ church.nome }}</li>
-                            <li class="list-group-item"><strong>Telefone :</strong>&nbsp;{{ church.telefone }}</li>
-                            <li class="list-group-item"><strong>CNPJ:</strong>&nbsp;{{ church.cnpj }}</li>
-                            <li class="list-group-item"><strong>Código :</strong>&nbsp;{{ church.code }}</li>
-                            <li class="list-group-item"><strong>Sede :</strong>&nbsp;{{ church.is_sede }}</li>
-                            <li class="list-group-item"><strong>ID end. :</strong>&nbsp;{{ church.address_id }}</li>
-                            <li class="list-group-item"><strong>Ativo :</strong>&nbsp;{{ church.ativo }}</li>
-                            <li class="list-group-item"><strong>Situação :</strong>&nbsp;{{ church.situacao }}</li>
-                            <li class="list-group-item"><strong>ID Super :</strong>&nbsp;{{ church.superintendente_id }}
-                            </li>
-                            <li class="list-group-item"><strong>ID Titu :</strong>&nbsp;{{ church.titular_id }}</li>
-                            <li class="list-group-item"><strong>Endereço :</strong>&nbsp;{{ church.address }}</li>
 
-                        </ul>
 
 
                     </div>
