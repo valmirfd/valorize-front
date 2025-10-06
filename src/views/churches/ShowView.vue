@@ -88,11 +88,17 @@ export default defineComponent({
                 </div>
 
                 <ul class="list-group mb-4">
-
                     <li class="list-group-item"><strong>Igreja :</strong>&nbsp;{{ church.nome }}</li>
-
-
-
+                    <li class="list-group-item"><strong>Telefone :</strong>&nbsp;{{ church.telefone }}</li>
+                    <li class="list-group-item"><strong>CNPJ:</strong>&nbsp;{{ church.cnpj }}</li>
+                    <li class="list-group-item"><strong>Código :</strong>&nbsp;{{ church.code }}</li>
+                    <li class="list-group-item"><strong>Sede :</strong>&nbsp;{{ church.is_sede }}</li>
+                    <li class="list-group-item"><strong>ID end. :</strong>&nbsp;{{ church.address_id }}</li>
+                    <li class="list-group-item"><strong>Ativo :</strong>&nbsp;{{ church.ativo }}</li>
+                    <li class="list-group-item"><strong>Situação :</strong>&nbsp;{{ church.situacao }}</li>
+                    <li class="list-group-item"><strong>ID Super :</strong>&nbsp;{{ church.superintendente_id }}</li>
+                    <li class="list-group-item"><strong>ID Titu :</strong>&nbsp;{{ church.titular_id }}</li>
+                    <li class="list-group-item"><strong>Endereço :</strong>&nbsp;{{ church.address }}</li>
 
                 </ul>
 
