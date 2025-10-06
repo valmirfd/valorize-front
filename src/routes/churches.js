@@ -3,19 +3,13 @@ export const churchesRoutes = [
         path: '/churches',
         name: 'ListChurches',
         component: () => import('@/views/churches/ListView.vue'),
-        meta: {
-            requireAuth: true,
-            isSuperAdmin: true,
-        }
+
     },
 
     {
-        path: '/churches/:id',
+        path: '/churches/show/:id',
         name: 'ShowChurchView',
         component: () => import('@/views/churches/ShowView.vue'),
-        meta: {
-            requireAuth: true,
-            isSuperAdmin: true,
-        }
+
     },
 ];
