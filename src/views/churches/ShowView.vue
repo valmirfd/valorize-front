@@ -78,8 +78,11 @@ export default defineComponent({
         <div class="row">
             <div class="col-md-6">
                 <div class="card shadow-lg">
-                    <div class="card-header d-inline-flex align-items-center">
-                        <h5 class="text-muted me-4">Detalhes da Igreja</h5>
+                    <div class="card-header d-flex flex-row justify-content-between align-items-center">
+
+                        <div>
+                            <h5 class="text-muted">Detalhes da Igreja</h5>
+                        </div>
                         <div class="ms-4">
                             <RouterLink class="btn btn-sm btn-outline-info me-2" to="/churches">
                                 <i class="bi bi-arrow-left-circle me-2"></i>Voltar
@@ -87,10 +90,10 @@ export default defineComponent({
 
                             <RouterLink class="btn btn-sm btn-outline-primary me-2"
                                 :to="{ name: 'EditChurchView', params: { id: church.id } }">
-                                <i class="bi bi-pencil-fill me-2"></i>Editar
+                                <i class="bi bi-pencil-square me-2"></i>Editar
                             </RouterLink>
 
-                            <RouterLink class="btn btn-sm btn-outline-danger me-2"
+                            <RouterLink class="btn btn-sm btn-outline-danger"
                                 :to="{ name: 'EditChurchView', params: { id: church.id } }">
                                 <i class="bi bi-trash3-fill me-2"></i>Excluir
                             </RouterLink>

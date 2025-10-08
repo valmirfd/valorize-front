@@ -14,6 +14,6 @@ export const churchesRoutes = [
     {
         path: '/churches/update/:id',
         name: 'EditChurchView',
-        component: () => import('@/views/churches/ShowView.vue'),
+        component: () => import('@/views/churches/EditView.vue'),
     },
 ];
